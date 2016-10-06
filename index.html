@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+	<script>
+		var test = {
+			title: "Тест по программированию",
+			questions: ["Вопрос №1","Вопрос №2","Вопрос №3"],
+			answers: [["Вариант ответа №1","Вариант ответа №2","Вариант ответа №3"],
+			["Вариант ответа №1","Вариант ответа №2","Вариант ответа №3"],
+			["Вариант ответа №1","Вариант ответа №2","Вариант ответа №3"]],
+			button: "Проверить мои результаты",
+			
+			createTitle: function() {
+				var title = document.createElement('h5');
+				title.className = "text-center";
+				title.innerHTML = this.title;
+				document.body.appendChild(title);
+			},
+
+			createButton: function() {
+				var button = document.createElement('button');
+				button.className = "center-block btn btn-info";
+				button.innerHTML = this.button;
+				document.body.appendChild(button);
+			},
+
+			createList: function () {
+				var ol = document.createElement('ol');
+				ol.className = "container";
+				document.body.appendChild(ol);
+				
+				for (var i=0; i<this.questions.length; i++) {
+					var li = document.createElement('li');
+					li.innerHTML = this.questions[i];
+					var ul = document.createElement('ul');
+					ul.className = "list-unstyled";
+					ol.appendChild(li);
+					li.appendChild(ul);
+										
+					for (var j=0; j<this.answers[i].length; j++){
+						li = document.createElement('li');
+						li.className = "checkbox";
+						var label = document.createElement('label');
+						var checkbox = document.createElement('input');
+						checkbox.type = "checkbox";
+						checkbox.name = "a" + (i+1);
+						var variant = document.createTextNode(this.answers[i][j]);
+						ul.appendChild(li);
+						li.appendChild(label);
+						label.appendChild(checkbox);
+						label.appendChild(variant);		
+					}
+				}
+			}
+		}	
+		test.createTitle();
+		test.createList();
+		test.createButton();
+	</script>
+</body>
+</html>
